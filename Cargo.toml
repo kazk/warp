@@ -36,7 +36,7 @@ tokio-stream = "0.1.1"
 tokio-util = { version = "0.6", features = ["io"] }
 tracing = { version = "0.1.21", default-features = false, features = ["std"] }
 tower-service = "0.3"
-tokio-tungstenite = { version = "0.15", optional = true }
+tokio-tungstenite = { git = "https://github.com/kazk/tokio-tungstenite", branch = "permessage-deflate", optional = true }
 percent-encoding = "2.1"
 pin-project = "1.0"
 tokio-rustls = { version = "0.22", optional = true }
@@ -53,7 +53,8 @@ listenfd = "0.3"
 
 [features]
 default = ["multipart", "websocket", "trace-log", "http2"]
-websocket = ["tokio-tungstenite"]
+# TODO Separate feature for permessage-deflate?
+websocket = ["tokio-tungstenite/deflate"]
 tls = ["tokio-rustls"]
 compression = ["async-compression"]
 trace-log = ["tracing/log"]
